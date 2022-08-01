@@ -5,8 +5,6 @@ import java.io.Serializable;
 import br.com.jaybank.enums.Taxa;
 import br.com.jaybank.excecoes.SaldoInsuficienteException;
 import br.com.jaybank.modelos.pessoa.Pessoa;
-import br.com.jaybank.modelos.pessoa.PessoaFisica;
-import br.com.jaybank.modelos.pessoa.PessoaJuridica;
 import br.com.jaybank.util.ConverteValor;
 
 public abstract class Conta implements Serializable {
@@ -24,15 +22,7 @@ public abstract class Conta implements Serializable {
 		this.numero = numero;
 		this.titular = titular;
 		this.saldo = 0;
-		this.taxa = determinaTaxa(titular);
-	}
-
-	private static Taxa determinaTaxa(Pessoa titular) {
-		if (titular instanceof PessoaFisica)
-			return Taxa.PF;
-		else if (titular instanceof PessoaJuridica)
-			return Taxa.PJ;
-		throw new IllegalArgumentException("Tipo de titular não identificado");
+		this.taxa = Taxa.determinaTaxa(titular);
 	}
 
 	public void depositar(long deposito) {

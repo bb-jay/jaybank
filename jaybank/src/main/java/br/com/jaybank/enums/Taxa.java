@@ -1,5 +1,12 @@
 package br.com.jaybank.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import br.com.jaybank.modelos.pessoa.Pessoa;
+import br.com.jaybank.modelos.pessoa.PessoaFisica;
+import br.com.jaybank.modelos.pessoa.PessoaJuridica;
+
 public enum Taxa {
 	PJ(
 			0.005,
@@ -13,6 +20,12 @@ public enum Taxa {
 			0.010);
 
 	private static final long serialVersionUID = 0400000L;
+	private static final Map<Class<? extends Pessoa>, Taxa> taxasPorTipo = new HashMap<>();
+	static {
+		taxasPorTipo.put(PessoaFisica.class, PF);
+		taxasPorTipo.put(PessoaJuridica.class, PJ);
+	}
+
 	private final double transferencia;
 	private final double saque;
 	private final double rendimento;
@@ -45,4 +58,10 @@ public enum Taxa {
 		return this.rendimento;
 	}
 
+	public static Taxa determinaTaxa(Pessoa titular) {
+		Taxa resultado = taxasPorTipo.get(titular.getClass());
+		if (resultado == null)
+			throw new IllegalArgumentException("Tipo de taxa não pôde ser determinado.");
+		return resultado;
+	}
 }
