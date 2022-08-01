@@ -24,13 +24,13 @@ public class ContaCorrente extends Conta {
 		if (emprestimo + divida > this.limite)
 			throw new LimiteInsuficienteException();
 
-		super.saldo += emprestimo;
+		super.depositar(emprestimo);
 		this.divida += emprestimo;
 	}
 
 	@Override
 	public void passarMes() {
-		long juros = Math.round(this.divida * super.taxa.getJuros());
+		long juros = Math.round(this.divida * super.getTaxa().getJuros());
 		this.divida += juros;
 	}
 

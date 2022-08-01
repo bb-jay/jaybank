@@ -12,8 +12,8 @@ public class ContaPoupanca extends Conta {
 
 	@Override
 	public void passarMes() {
-		long rendimento = Math.round(super.saldo * super.taxa.getRendimento());
-		this.saldo += rendimento;
+		long rendimento = Math.round(super.getSaldo() * super.getTaxa().getRendimento());
+		super.depositar(rendimento);
 	}
 
 	@Override

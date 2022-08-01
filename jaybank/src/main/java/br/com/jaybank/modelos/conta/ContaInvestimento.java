@@ -26,9 +26,9 @@ public class ContaInvestimento extends Conta {
 
 	@Override
 	public void passarMes() {
-		double taxaRendimento = this.perfil.getVariacao() + super.taxa.getRendimento();
-		long rendimento = Math.round(super.saldo * taxaRendimento);
-		this.saldo += rendimento;
+		double taxaRendimento = this.perfil.getVariacao() + super.getTaxa().getRendimento();
+		long rendimento = Math.round(super.getSaldo() * taxaRendimento);
+		super.depositar(rendimento);
 	}
 
 	@Override

@@ -13,8 +13,8 @@ public abstract class Conta implements Serializable {
 
 	private final int numero;
 	private Pessoa titular;
-	protected final Taxa taxa;
-	protected long saldo;
+	private long saldo;
+	private final Taxa taxa;
 
 	public abstract void passarMes();
 
@@ -71,6 +71,10 @@ public abstract class Conta implements Serializable {
 
 	public int getNumero() {
 		return numero;
+	}
+
+	protected Taxa getTaxa() {
+		return taxa;
 	}
 
 	protected void validaValor(long valor) {
