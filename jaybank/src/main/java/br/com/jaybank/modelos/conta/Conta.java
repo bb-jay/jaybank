@@ -30,30 +30,32 @@ public abstract class Conta implements Serializable {
 		this.saldo += deposito;
 	}
 
-	protected long tirar(long retirada, double taxa) throws SaldoInsuficienteException{
+	protected long tirar(long retirada, double taxa)
+			throws SaldoInsuficienteException {
 		validaValor(retirada);
 		long tarifa = Math.round(retirada * taxa);
 		if (retirada + tarifa < this.saldo) {
 			this.saldo -= retirada + tarifa;
 			return retirada;
 		}
-		throw new SaldoInsuficienteException();
+		throw new SaldoInsuficienteException(String.format(
+				"Requer: %.2f, Tem: %.2f", retirada + tarifa, saldo));
 	}
 
-	public long sacar(long saque) throws SaldoInsuficienteException{
+	public long sacar(long saque) throws SaldoInsuficienteException {
 		validaValor(saque);
 		return tirar(saque, this.taxa.getSaque());
 	}
 
-	public void transferir(long transferencia, Conta destino) throws SaldoInsuficienteException{
+	public void transferir(long transferencia, Conta destino)
+			throws SaldoInsuficienteException {
 		destino.depositar(
 				this.tirar(
 						transferencia,
-						this.getTitular() == destino.getTitular() ? 0 : this.taxa.getTransferencia()
-		));
+						this.getTitular() == destino.getTitular() ? 0 : this.taxa.getTransferencia()));
 	}
 
-	public long getSaldoPuro() {
+	public long getSaldo() {
 		return saldo;
 	}
 
