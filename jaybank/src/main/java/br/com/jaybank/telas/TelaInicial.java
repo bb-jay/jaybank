@@ -18,7 +18,7 @@ public class TelaInicial extends Tela {
 				"Cadastrar", 			//2 ok
 				"Trocar Agencia", //3
 				"Passar um mês", 	//4
-				"Sair"},					//5
+				"lançar SairDaTelaException"},					//5
 			true);
 		Tela.banco = banco;
 		super.iniciar();
