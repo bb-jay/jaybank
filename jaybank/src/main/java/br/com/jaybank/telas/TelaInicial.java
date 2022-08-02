@@ -39,9 +39,8 @@ public class TelaInicial extends Tela {
 		try {
 			Cliente cliente = Formulario.cadastrarCliente();
 			new TelaLogadaContaCorrente(cliente).iniciar();
-		}
-		catch (ClienteDuplicadoException e) {
-			super.setMensagem("ERRO: " + e);
+		} catch (ClienteDuplicadoException e) {
+			this.setMensagem("Cliente com esse documento já existe...");
 		}
 	}
 	@Override

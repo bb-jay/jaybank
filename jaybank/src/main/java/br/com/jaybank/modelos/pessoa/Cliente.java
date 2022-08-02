@@ -4,8 +4,6 @@ package br.com.jaybank.modelos.pessoa;
 // import java.util.Set;
 import java.io.Serializable;
 
-import br.com.jaybank.excecoes.ClienteDuplicadoException;
-
 public abstract class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1000000L;
@@ -17,7 +15,7 @@ public abstract class Cliente implements Serializable {
 	// TODO verificar se o banco tem pessoa, não na classe pessoa
 	// public static final Set<Integer> documentos = new HashSet<Integer>();
 
-	Cliente(String nome, String endereco, String telefone, int documento) throws ClienteDuplicadoException{
+	Cliente(String nome, String endereco, String telefone, int documento) {
 		// if (Pessoa.documentos.contains(documento))
 			// throw new PessoaDuplicadaException();
 		this.documento = documento;

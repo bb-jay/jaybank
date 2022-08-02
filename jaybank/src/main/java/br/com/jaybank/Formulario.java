@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 import br.com.jaybank.enums.PerfilInvestidor;
-import br.com.jaybank.excecoes.ContaJaExisteException;
 import br.com.jaybank.excecoes.ClienteDuplicadoException;
+import br.com.jaybank.excecoes.ContaJaExisteException;
 import br.com.jaybank.modelos.Agencia;
 import br.com.jaybank.modelos.Cadastro;
 import br.com.jaybank.modelos.conta.ContaCorrente;
@@ -85,7 +85,7 @@ public abstract class Formulario {
 
 	}
 
-	public static PessoaFisica cadastrarClientePf() throws ClienteDuplicadoException {
+	public static PessoaFisica cadastrarClientePf() {
 		Console.limparConsole();
 		System.out.println();
 		Console.printaCentro("Informe os dados do cliente");
@@ -125,7 +125,7 @@ public abstract class Formulario {
 		return novoCliente;
 	}
 
-	public static PessoaJuridica cadastrarClientePj() throws ClienteDuplicadoException {
+	public static PessoaJuridica cadastrarClientePj() {
 		Console.limparConsole();
 		System.out.println();
 		Console.printaCentro("Informe os dados da empresa");
