@@ -6,16 +6,16 @@ import br.com.jaybank.excecoes.SaldoInsuficienteException;
 import br.com.jaybank.modelos.Cadastro;
 import br.com.jaybank.modelos.conta.Conta;
 import br.com.jaybank.modelos.conta.ContaCorrente;
-import br.com.jaybank.modelos.pessoa.Pessoa;
+import br.com.jaybank.modelos.pessoa.Cliente;
 import br.com.jaybank.util.Console;
 
 public class TelaLogadaContaCorrente extends Tela {
 
 	private ContaCorrente conta;
 	private Cadastro cadastro;
-	private Pessoa cliente;
+	private Cliente cliente;
 
-	public TelaLogadaContaCorrente(Pessoa cliente) {
+	public TelaLogadaContaCorrente(Cliente cliente) {
 		super(
 				"Conta corrente",
 				new String[] {

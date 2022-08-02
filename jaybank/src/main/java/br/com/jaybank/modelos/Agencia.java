@@ -17,17 +17,17 @@ public class Agencia implements Serializable {
 	private static final long serialVersionUID = 3000000L;
 
 	private final int numero;
-	private final Set<Pessoa> clientes = new HashSet<>();
+	private final Set<Cliente> clientes = new HashSet<>();
 	private final Set<Integer> numerosDeConta = new HashSet<>();
 	private final Map<Integer, Conta> contas = new HashMap<>();
-	private final Map<Pessoa, Cadastro> mapPessoasContas = new HashMap<>();// [0] = CC, [1] = CI, [2] = CP
+	private final Map<Cliente, Cadastro> mapPessoasContas = new HashMap<>();// [0] = CC, [1] = CI, [2] = CP
 	
 
 	public Agencia(int numero) {
 		this.numero = numero;
 	}
 
-	public boolean cadastrarCliente(Pessoa cliente) {
+	public boolean cadastrarCliente(Cliente cliente) {
 		if (cliente instanceof PessoaFisica)
 			return this.cadastrarCliente((PessoaFisica) cliente);
 		else if (cliente instanceof PessoaJuridica)
@@ -56,7 +56,7 @@ public class Agencia implements Serializable {
 		return true;
 	}
 
-	public int abrirConta(Pessoa cliente, Class<? extends Conta> tipoDeConta) throws ContaJaExisteException {
+	public int abrirConta(Cliente cliente, Class<? extends Conta> tipoDeConta) throws ContaJaExisteException {
 		if (cliente == null)
 			throw new IllegalArgumentException("Cliente não pode ser nulo");
 		verificaSeTemConta(cliente, tipoDeConta);
@@ -82,7 +82,7 @@ public class Agencia implements Serializable {
 		return numero;
 	}
 
-	private void verificaSeTemConta(Pessoa cliente, Class<? extends Conta> tipoDeConta) throws ContaJaExisteException {
+	private void verificaSeTemConta(Cliente cliente, Class<? extends Conta> tipoDeConta) throws ContaJaExisteException {
 		Conta existente;
 
 		if ((existente = this.getContaDoTipo(cliente, tipoDeConta)) != null) {
@@ -99,18 +99,18 @@ public class Agencia implements Serializable {
 		return contas.get(numero);
 	}
 
-	public Cadastro getCadastro(Pessoa cliente) {
+	public Cadastro getCadastro(Cliente cliente) {
 		return mapPessoasContas.get(cliente);
 	}
 
-	public <C extends Conta> C getContaDoTipo(Pessoa cliente, Class<C> tipoDeConta) {
+	public <C extends Conta> C getContaDoTipo(Cliente cliente, Class<C> tipoDeConta) {
 		if (!mapPessoasContas.containsKey(cliente))
 			return null;
 		return mapPessoasContas.get(cliente).getContaDoTipo(tipoDeConta);
 	}
 
-	public Pessoa getCliente(int documento) {
-		for (Pessoa cliente : clientes) {
+	public Cliente getCliente(int documento) {
+		for (Cliente cliente : clientes) {
 			if (cliente.getDocumento() == documento)
 				return cliente;
 		}

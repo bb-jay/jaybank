@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import br.com.jaybank.enums.Taxa;
 import br.com.jaybank.excecoes.SaldoInsuficienteException;
-import br.com.jaybank.modelos.pessoa.Pessoa;
+import br.com.jaybank.modelos.pessoa.Cliente;
 import br.com.jaybank.util.ConverteValor;
 
 public abstract class Conta implements Serializable {
@@ -12,13 +12,13 @@ public abstract class Conta implements Serializable {
 	private static final long serialVersionUID = 2000000L;
 
 	private final int numero;
-	private Pessoa titular;
+	private Cliente titular;
 	private long saldo;
 	private final Taxa taxa;
 
 	public abstract void passarMes();
 
-	Conta(int numero, Pessoa titular) {
+	Conta(int numero, Cliente titular) {
 		this.numero = numero;
 		this.titular = titular;
 		this.saldo = 0;
@@ -63,11 +63,11 @@ public abstract class Conta implements Serializable {
 		return ConverteValor.comCifrao(this.saldo);
 	}
 
-	public Pessoa getTitular() {
+	public Cliente getTitular() {
 		return titular;
 	}
 
-	public void setTitular(Pessoa titular) {
+	public void setTitular(Cliente titular) {
 		this.titular = titular;
 	}
 

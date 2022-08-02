@@ -1,7 +1,7 @@
 package br.com.jaybank.modelos.conta;
 
 import br.com.jaybank.enums.PerfilInvestidor;
-import br.com.jaybank.modelos.pessoa.Pessoa;
+import br.com.jaybank.modelos.pessoa.Cliente;
 
 public class ContaInvestimento extends Conta {
 
@@ -9,7 +9,7 @@ public class ContaInvestimento extends Conta {
 
 	protected PerfilInvestidor perfil;
 
-	public ContaInvestimento(int numero, Pessoa titular) {
+	public ContaInvestimento(int numero, Cliente titular) {
 		super(numero, titular);
 		this.setPerfil(PerfilInvestidor.CONSERVADOR);
 	}

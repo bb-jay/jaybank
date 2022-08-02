@@ -5,12 +5,12 @@ import java.time.format.DateTimeParseException;
 
 import br.com.jaybank.enums.PerfilInvestidor;
 import br.com.jaybank.excecoes.ContaJaExisteException;
-import br.com.jaybank.excecoes.PessoaDuplicadaException;
+import br.com.jaybank.excecoes.ClienteDuplicadoException;
 import br.com.jaybank.modelos.Agencia;
 import br.com.jaybank.modelos.Cadastro;
 import br.com.jaybank.modelos.conta.ContaCorrente;
 import br.com.jaybank.modelos.conta.ContaInvestimento;
-import br.com.jaybank.modelos.pessoa.Pessoa;
+import br.com.jaybank.modelos.pessoa.Cliente;
 import br.com.jaybank.modelos.pessoa.PessoaFisica;
 import br.com.jaybank.modelos.pessoa.PessoaJuridica;
 import br.com.jaybank.telas.Tela;
@@ -18,14 +18,14 @@ import br.com.jaybank.util.Console;
 
 public abstract class Formulario {
 
-	public static Pessoa entrar() {
+	public static Cliente entrar() {
 		System.out.println("Informe seu documento: ");
 		int documento = -1;
 		documento = Console.lerInt(0, Integer.MAX_VALUE);
 		return Tela.getBanco().selecionada().getCliente(documento);
 	}
 
-	public static void meusDados(Pessoa cliente) {
+	public static void meusDados(Cliente cliente) {
 		Console.limparConsole();
 		if (cliente instanceof PessoaFisica)
 			meusDados((PessoaFisica) cliente);
@@ -57,14 +57,14 @@ public abstract class Formulario {
 		System.out.println("Responsável: " + cliente.getResponsavel().getNome());
 	}
 
-	public static Pessoa cadastrarCliente() throws PessoaDuplicadaException {
+	public static Cliente cadastrarCliente() throws ClienteDuplicadoException {
 		while (true) {
 			Console.limparConsole();
 			System.out.println();
 			System.out.println("Pessoa física (PF) ou pessoa jurídica (PJ) ?");
 			System.out.println();
 			String escolha = Tela.sc.nextLine();
-			Pessoa novoCliente = null;
+			Cliente novoCliente = null;
 			if (escolha.toLowerCase().equals("pj") ||
 					escolha.toLowerCase().equals("pessoa juridica") ||
 					escolha.toLowerCase().equals("juridica"))
@@ -85,7 +85,7 @@ public abstract class Formulario {
 
 	}
 
-	public static PessoaFisica cadastrarClientePf() throws PessoaDuplicadaException {
+	public static PessoaFisica cadastrarClientePf() throws ClienteDuplicadoException {
 		Console.limparConsole();
 		System.out.println();
 		Console.printaCentro("Informe os dados do cliente");
@@ -125,7 +125,7 @@ public abstract class Formulario {
 		return novoCliente;
 	}
 
-	public static PessoaJuridica cadastrarClientePj() throws PessoaDuplicadaException {
+	public static PessoaJuridica cadastrarClientePj() throws ClienteDuplicadoException {
 		Console.limparConsole();
 		System.out.println();
 		Console.printaCentro("Informe os dados da empresa");
@@ -198,7 +198,7 @@ public abstract class Formulario {
 		conta.setPerfil(novoPerfil);
 	}
 
-	public static boolean fazerContaInvestimento(Pessoa cliente, Cadastro cadastro, Agencia agencia) {
+	public static boolean fazerContaInvestimento(Cliente cliente, Cadastro cadastro, Agencia agencia) {
 		System.out.println("Você não tem conta investimento. Criar uma? (s/n)");
 		String escolha;
 		

@@ -1,8 +1,8 @@
 package br.com.jaybank.modelos.pessoa;
 
-import br.com.jaybank.excecoes.PessoaDuplicadaException;
+import br.com.jaybank.excecoes.ClienteDuplicadoException;
 
-public class PessoaJuridica extends Pessoa {
+public class PessoaJuridica extends Cliente {
 
 	private static final long serialVersionUID = 1200000L;
 
@@ -13,7 +13,7 @@ public class PessoaJuridica extends Pessoa {
 			int documento,
 			String endereco,
 			String telefone,
-			PessoaFisica responsavel) throws PessoaDuplicadaException {
+			PessoaFisica responsavel) throws ClienteDuplicadoException {
 		super(nome, endereco, telefone, documento);
 		this.setResponsavel(responsavel);
 	}

@@ -9,14 +9,14 @@ import java.io.ObjectOutputStream;
 import br.com.jaybank.excecoes.BancoJayException;
 import br.com.jaybank.modelos.Banco;
 import br.com.jaybank.modelos.conta.ContaCorrente;
-import br.com.jaybank.modelos.pessoa.Pessoa;
+import br.com.jaybank.modelos.pessoa.Cliente;
 import br.com.jaybank.modelos.pessoa.PessoaFisica;
 import br.com.jaybank.telas.TelaInicial;
 
 public class App {
     public static void main(String[] args) throws BancoJayException, IOException, ClassNotFoundException {
 
-        Pessoa ze = new PessoaFisica(
+        Cliente ze = new PessoaFisica(
                 "Zé da Silva",
                 123,
                 "Rua da Goiaba, 420",

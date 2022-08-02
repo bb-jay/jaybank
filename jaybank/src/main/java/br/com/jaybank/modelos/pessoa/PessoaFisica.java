@@ -5,9 +5,9 @@ import java.time.Period;
 
 import br.com.jaybank.enums.EstadoCivil;
 import br.com.jaybank.enums.Genero;
-import br.com.jaybank.excecoes.PessoaDuplicadaException;
+import br.com.jaybank.excecoes.ClienteDuplicadoException;
 
-public class PessoaFisica extends Pessoa {
+public class PessoaFisica extends Cliente {
 
 	private static final long serialVersionUID = 1100000L;
 
@@ -21,7 +21,7 @@ public class PessoaFisica extends Pessoa {
 			int documento,
 			String endereco,
 			String telefone,
-			String nascimento) throws PessoaDuplicadaException {
+			String nascimento) throws ClienteDuplicadoException {
 		super(nome, endereco, telefone, documento);
 		this.nascimento = LocalDate.parse(nascimento);
 	}
@@ -34,7 +34,7 @@ public class PessoaFisica extends Pessoa {
 			String nascimento,
 			char genero,
 			char estadoCivil,
-			String profissao) throws PessoaDuplicadaException {
+			String profissao) throws ClienteDuplicadoException {
 		this(nome, documento, endereco, telefone, nascimento);
 		this.setGenero(genero);
 		this.setEstadoCivil(estadoCivil);

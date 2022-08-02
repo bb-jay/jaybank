@@ -2,10 +2,10 @@ package br.com.jaybank.telas;
 
 import br.com.jaybank.Formulario;
 import br.com.jaybank.excecoes.BancoJayException;
-import br.com.jaybank.excecoes.PessoaDuplicadaException;
+import br.com.jaybank.excecoes.ClienteDuplicadoException;
 import br.com.jaybank.excecoes.SairDaTelaException;
 import br.com.jaybank.modelos.Banco;
-import br.com.jaybank.modelos.pessoa.Pessoa;
+import br.com.jaybank.modelos.pessoa.Cliente;
 import br.com.jaybank.util.Console;
 
 public class TelaInicial extends Tela {
@@ -27,7 +27,7 @@ public class TelaInicial extends Tela {
 
 	@Override
 	protected void opcao1() {
-		Pessoa cliente = Formulario.entrar();
+		Cliente cliente = Formulario.entrar();
 		if (cliente == null) {
 			super.setMensagem("Cliente não encontrado.");
 			return;
@@ -37,10 +37,10 @@ public class TelaInicial extends Tela {
 	@Override
 	protected void opcao2() {
 		try {
-			Pessoa cliente = Formulario.cadastrarCliente();
+			Cliente cliente = Formulario.cadastrarCliente();
 			new TelaLogadaContaCorrente(cliente).iniciar();
 		}
-		catch (PessoaDuplicadaException e) {
+		catch (ClienteDuplicadoException e) {
 			super.setMensagem("ERRO: " + e);
 		}
 	}

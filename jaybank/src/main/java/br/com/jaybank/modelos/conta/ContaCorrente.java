@@ -3,7 +3,7 @@ package br.com.jaybank.modelos.conta;
 import br.com.jaybank.excecoes.LimiteInsuficienteException;
 import br.com.jaybank.excecoes.PagamentoExcessivoException;
 import br.com.jaybank.excecoes.SaldoInsuficienteException;
-import br.com.jaybank.modelos.pessoa.Pessoa;
+import br.com.jaybank.modelos.pessoa.Cliente;
 import br.com.jaybank.util.ConverteValor;
 
 public class ContaCorrente extends Conta {
@@ -13,7 +13,7 @@ public class ContaCorrente extends Conta {
 	protected long divida;
 	private long limite;
 
-	public ContaCorrente(int numero, Pessoa titular) {
+	public ContaCorrente(int numero, Cliente titular) {
 		super(numero, titular);
 		this.limite = 0;
 		this.divida = 0;
